@@ -99,7 +99,8 @@ function fetchfromapi(callback) {
                 marketCap: Number(asset.marketCapUsd).toLocaleString(undefined, {
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 0
-                })
+                }),
+                logo: `img/${asset.symbol.toLowerCase()}.png`
             }));
             callback(assets);
             $(".preloader").hide();

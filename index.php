@@ -36,7 +36,7 @@ include 'php/functions.php';
                     <th>logo</th>
                     <th>Crypto</th>
                     <th>Price</th>
-                    <th class="detailsTable">details:</th>
+                    <th >details:</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -50,10 +50,13 @@ include 'php/functions.php';
         {{#assets}}
             <tr>
                 <td>{{row}}</td>
-                <td>{{symbol}}</td>
+                <td>
+                    <img src="{{logo}}" alt="{{symbol}} logo" width="32" height="32">    
+                    {{symbol}}
+                </td>
                 <td>{{name}}</td>
                 <td>{{price}}</td>
-                <td><button class="details-btn" data-index="{{row}}">Details</button></td>
+                <td><button class="details-btn" data-index="{{row}}">View</button></td>
             </tr>
         {{/assets}}
     </script>
@@ -68,7 +71,9 @@ include 'php/functions.php';
             <!-- Modal content -->
             <div id="modalContent" style="background:#fff; padding:20px; border-radius:10px; max-width:600px; width:90%;">
                 <button id="closeModal" style="float:right;">X</button>
-                <div id="modalDetails"></div>
+                <div id="modalDetails">
+                    
+                </div>
                 <canvas id="historyChart" width="500" height="300"></canvas>
             </div>
         </div>
