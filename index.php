@@ -36,7 +36,7 @@ include 'php/functions.php';
                     <th>logo</th>
                     <th>Crypto</th>
                     <th>Price</th>
-                    <th >details:</th>
+                    <th>details:</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -51,7 +51,7 @@ include 'php/functions.php';
             <tr>
                 <td>{{row}}</td>
                 <td>
-                    <img src="{{logo}}" alt="{{symbol}} logo" width="32" height="32">    
+                    <img src="{{logo}}" alt="{{symbol}} logo" width="32" height="32">
                     {{symbol}}
                 </td>
                 <td>{{name}}</td>
@@ -65,15 +65,27 @@ include 'php/functions.php';
     <div id="details" style="margin-top:20px;">
 
         <!-- Modal background -->
-        <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
-    background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+        <div id="modal" class="modal">
 
             <!-- Modal content -->
-            <div id="modalContent" style="background:#fff; padding:20px; border-radius:10px; max-width:600px; width:90%;">
-                <button id="closeModal" style="float:right;">X</button>
-                <div id="modalDetails">
-                    
+            <div id="modalContent" class="modal-content">
+                <button id="closeModal" class="close-modal">X</button>
+
+                <div class="topSection">
+                    <div id="modalDetails"></div>
+
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <div class="buy-section">
+                            <label for="buyAmount" class="buy-label">Amount:</label>
+                            <input type="number"  id="buyAmount" class="buy-input" min="0" placeholder="Enter amount">
+                            <p id="totalCost" class="total-cost">Total: $0.00</p>
+                            <button id="buyButton" class="buy-button">
+                                Buy
+                            </button>
+                        </div>
+                    <?php endif; ?>
                 </div>
+
                 <canvas id="historyChart" width="500" height="300"></canvas>
             </div>
         </div>

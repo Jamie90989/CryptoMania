@@ -2,13 +2,11 @@
 
 function connectDB()
 {
-    //
-    $mysqli = new mysqli("localhost", "root", "", "cryptomania");
-
-    // Check connection
-    if ($mysqli->connect_errno) {
-        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-        exit();
+    try {
+        $pdo = new PDO("mysql:host=localhost;dbname=cryptomania;charset=utf8", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    } catch (PDOException $e) {
+        die("Database connection failed: " . $e->getMessage());
     }
-    return $mysqli;
 }

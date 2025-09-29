@@ -1,5 +1,13 @@
 <?php
+session_start();
 include 'php/functions.php';
+include 'php/db.php'; // or wherever you connect to DB
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +25,22 @@ include 'php/functions.php';
 
 <body>
     <?php navbar() ?>
-    </script>
+    <div id="walletContainer" style="display:none;">
+    <h2>Your Wallet</h2>
+    <table id="walletTable">
+        <thead>
+            <tr>
+                <th>Coin</th>
+                <th>Symbol</th>
+                <th>Amount</th>
+                <th>Current Price</th>
+                <th>Total Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="walletBody"></tbody>
+    </table>
+</div>
     <script defer src="js/main.js"></script>
 </body>
 
