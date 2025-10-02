@@ -12,7 +12,7 @@ function navbar()
                 <button><a href="wallet.php">wallet</a></button>
             </div>
         </div>
-        <div class="headerLeft">
+        <div>
             <button><a href="login.php">Login</a></button>
             <button><a href="logout.php">Logout</a></button>
         </div>

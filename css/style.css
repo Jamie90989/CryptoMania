@@ -310,6 +310,7 @@ a {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     font-family: "Segoe UI", Tahoma, sans-serif;
+    overflow-x: auto;
 }
 
 .wallet-title {
@@ -355,6 +356,7 @@ a {
     cursor: pointer;
     font-size: 0.9rem;
     transition: all 0.2s ease-in-out;
+    margin: 5px;
 }
 
 .updateCoin {
