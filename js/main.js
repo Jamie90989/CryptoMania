@@ -113,10 +113,7 @@ function fetchfromapi(callback) {
 }
 
 $(document).ready(function () {
-    render();    
-    if (window.location.pathname.endsWith("wallet.php")) {
-        loadWallet();
-    }
+    render();   
 });
 
 $(document).on('click', '#buyButton', function () {
@@ -138,8 +135,6 @@ $(document).on('click', '#buyButton', function () {
             price: price
         }, function (res) {
             if (res.success) {
-                alert(`${amount} ${symbol} added to your wallet!`);
-                loadWallet();
                 window.location.href = 'wallet.php'; // redirect
             } else if (res.error) {
                 alert('Error: ' + res.error);
@@ -222,49 +217,4 @@ $(document).on('input', '#buyAmount', function () {
     })}`);
 });
 
-function loadWallet() {
-    console.log("Loading wallet...");
-    $.post('php/ajax_wallet.php', { action: 'get' }, function (data) {
-        console.log("Wallet AJAX response:", data);
-        if (data.error) { 
-            alert(data.error); 
-            return; 
-        }
-        $('#walletBody').empty();
-        data.forEach(coin => {
-            const total = (coin.amount * coin.price).toFixed(2);
-            $('#walletBody').append(`
-                <tr data-coin="${coin.coin_id}">
-                    <td>${coin.coin_name}</td>
-                    <td>${coin.coin_id}</td>
-                    <td><input type="number" class="wallet-amount" value="${coin.amount}" min="0.0001" step="0.0001"></td>
-                    <td>$${coin.price}</td>
-                    <td>$${total}</td>
-                    <td>
-                        <button class="updateCoin">Update</button>
-                        <button class="deleteCoin">Delete</button>
-                    </td>
-                </tr>
-            `);
-        });
-        $('#walletContainer').show();
-    }, 'json');
-}
 
-
-$(document).on('click', '.updateCoin', function () {
-    const row = $(this).closest('tr');
-    const coin_id = row.data('coin');
-    const amount = row.find('.wallet-amount').val();
-    $.post('wallet.php', { action: 'update', coin_id, amount }, function (res) {
-        if (res.success) loadWallet();
-    }, 'json');
-});
-
-$(document).on('click', '.deleteCoin', function () {
-    const row = $(this).closest('tr');
-    const coin_id = row.data('coin');
-    $.post('wallet.php', { action: 'delete', coin_id }, function (res) {
-        if (res.success) loadWallet();
-    }, 'json');
-});

@@ -29,6 +29,8 @@ header {
   width: 20%;
 }
 
+
+
 header button {
   padding: 10px;
   margin: 10px;
@@ -51,6 +53,7 @@ a {
 
 .container {
   margin: 5%;
+  overflow-x: auto;
 }
 
 .table {
@@ -296,3 +299,199 @@ a {
     color: #333;
     font-size: 18px;
 }
+
+
+/* Wallet Container */
+.wallet-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.wallet-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Wallet Table */
+.wallet-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.wallet-table th, 
+.wallet-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.wallet-table thead {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+.wallet-table tbody tr {
+    border-bottom: 1px solid #eaeaea;
+    transition: background 0.2s ease-in-out;
+}
+
+.wallet-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.updateCoin {
+    background-color: #3498db;
+    color: white;
+}
+
+.updateCoin:hover {
+    background-color: #2980b9;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* wallet edit modal */
+
+/* Full-screen overlay */
+#walletEditModal {
+    display: none; /* hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5); /* semi-transparent background */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal content box */
+.wallet-edit-modal-content {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 350px;
+    max-width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+}
+
+/* Close button */
+.wallet-edit-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Title */
+#walletEditTitle {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Input */
+.wallet-edit-section input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Total */
+.wallet-edit-total {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Buttons */
+.wallet-edit-section button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#walletSaveEditButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#walletSaveEditButton:hover {
+    background-color: #45a049;
+}
+
+#walletRemoveButton {
+    background-color: #f44336;
+    color: white;
+}
+
+#walletRemoveButton:hover {
+    background-color: #da190b;
+}
+
+#walletNotification {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 0 0 8px 8px;
+    font-size: 16px;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    text-align: center;
+    display: none;
+}
+
+/* Notification types */
+.wallet-notif-success {
+    background-color: #4CAF50; /* green */
+}
+
+.wallet-notif-delete {
+     background-color: #ff9800; /* orange */
+}
+
+.wallet-notif-error {
+    background-color: #f44336; /* red */
+}
+

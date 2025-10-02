@@ -12,7 +12,7 @@ function navbar()
                 <button><a href="wallet.php">wallet</a></button>
             </div>
         </div>
-        <div>
+        <div class="headerLeft">
             <button><a href="login.php">Login</a></button>
             <button><a href="logout.php">Logout</a></button>
         </div>
@@ -131,8 +131,15 @@ function deleteCoin($user_id, $coin_id, $pdo)
 // Update coin amount
 function updateCoinAmount($user_id, $coin_id, $amount, $pdo)
 {
-    $stmt = $pdo->prepare("UPDATE wallets SET amount=?, updated_at=NOW() WHERE user_id=? AND coin_id=?");
-    $stmt->execute([$amount, $user_id, $coin_id]);
+     // Check if coin exists
+    $stmt = $pdo->prepare("SELECT id, amount FROM wallets WHERE user_id=? AND coin_id=?");
+    $stmt->execute([$user_id, $coin_id]);
+    $existing = $stmt->fetch();
+
+        // Add to existing amount
+        $newAmount = $existing['amount'] + $amount;
+        $updateStmt = $pdo->prepare("UPDATE wallets SET amount = ?, updated_at = NOW() WHERE id = ?");
+        $updateStmt->execute([$newAmount, $existing['id']]);
 }
 
 
