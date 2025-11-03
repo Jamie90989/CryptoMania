@@ -1,4 +1,5 @@
 /* styles */
+
 :root {
   --color-background: #f0f0f0;
   --color-button: #FCF4A3;
@@ -29,8 +30,6 @@ header {
   width: 20%;
 }
 
-
-
 header button {
   padding: 10px;
   margin: 10px;
@@ -47,6 +46,7 @@ header button:hover {
 
 
 /* crypto table */
+
 a {
   text-decoration: none;
 }
@@ -144,7 +144,9 @@ a {
   transition: 0.2s;
 }
 
+
 /* Login en register */
+
 .login-container {
     max-width: 400px;
     margin: 50px auto;
@@ -213,6 +215,7 @@ a {
     text-decoration: underline;
 }
 
+
 /* details */
 
 .modal {
@@ -256,7 +259,6 @@ a {
     gap: 15px;
 }
 
-/* (only visible if user is logged in) */
 .buy-button {
     margin-top: 15px;
     padding: 10px 20px;
@@ -301,7 +303,8 @@ a {
 }
 
 
-/* Wallet Container */
+/* Wallet */
+
 .wallet-container {
     max-width: 900px;
     margin: 30px auto;
@@ -321,7 +324,6 @@ a {
     text-align: center;
 }
 
-/* Wallet Table */
 .wallet-table {
     width: 100%;
     border-collapse: collapse;
@@ -377,11 +379,11 @@ a {
     background-color: #c0392b;
 }
 
+
 /* wallet edit modal */
 
-/* Full-screen overlay */
 #walletEditModal {
-    display: none; /* hidden by default */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -394,7 +396,6 @@ a {
     justify-content: center;
 }
 
-/* Modal content box */
 .wallet-edit-modal-content {
     background-color: #fff;
     padding: 25px 30px;
@@ -406,7 +407,6 @@ a {
     text-align: center;
 }
 
-/* Close button */
 .wallet-edit-close {
     position: absolute;
     top: 10px;
@@ -417,14 +417,12 @@ a {
     font-weight: bold;
 }
 
-/* Title */
 #walletEditTitle {
     margin-bottom: 20px;
     font-size: 20px;
     color: #333;
 }
 
-/* Input */
 .wallet-edit-section input {
     width: 100%;
     padding: 8px 10px;
@@ -434,14 +432,12 @@ a {
     font-size: 16px;
 }
 
-/* Total */
 .wallet-edit-total {
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 16px;
 }
 
-/* Buttons */
 .wallet-edit-section button {
     padding: 10px 15px;
     border: none;
@@ -497,3 +493,74 @@ a {
     background-color: #f44336; /* red */
 }
 
+
+/* exchanges */
+
+.exchange-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.exchange-page-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2em;
+    color: #0044ff;
+}
+
+.exchange-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.exchange-card {
+    background: #1c1c1c;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+}
+
+.exchange-card:hover {
+    transform: scale(1.03);
+}
+
+.exchange-rank {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.exchange-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+.exchange-volume {
+    color: #00c3ff;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.exchange-link a {
+    color: #00ff9d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.exchange-link a:hover {
+    text-decoration: underline;
+}
+
+.exchange-error-message {
+    color: red;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+}

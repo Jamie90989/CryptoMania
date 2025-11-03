@@ -60,7 +60,7 @@ include 'php/functions.php';
             </tr>
         {{/assets}}
     </script>
-    <script defer src="js/main.js"></script>
+
 
     <div id="details" style="margin-top:20px;">
 
@@ -77,7 +77,7 @@ include 'php/functions.php';
                     <?php if (isset($_SESSION['username'])): ?>
                         <div class="buy-section">
                             <label for="buyAmount" class="buy-label">Amount:</label>
-                            <input type="number"  id="buyAmount" class="buy-input" min="0" placeholder="Enter amount">
+                            <input type="number" id="buyAmount" class="buy-input" min="0" placeholder="Enter amount">
                             <p id="totalCost" class="total-cost">Total: $0.00</p>
                             <button id="buyButton" class="buy-button">
                                 Buy
@@ -92,6 +92,7 @@ include 'php/functions.php';
 
 
     </div>
+    <script defer src="js/main.js"></script>
 </body>
 
 </html>

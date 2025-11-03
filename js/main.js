@@ -76,10 +76,6 @@ document.getElementById("closeModal").addEventListener("click", function () {
     document.getElementById("modal").style.display = "none";
 });
 
-// Initial render
-// $(function() { render(); });
-
-
 function fetchfromapi(callback) {
     $.ajax({
         type: "GET",

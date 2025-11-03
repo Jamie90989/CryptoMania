@@ -9,7 +9,10 @@ function navbar()
                 <button><a href="index.php">Home</a></button>
             </div>
             <div>
-                <button><a href="wallet.php">wallet</a></button>
+                <button><a href="wallet.php">Wallet</a></button>
+            </div>
+             <div>
+                <button><a href="exchanges.php">Exchanges</a></button>
             </div>
         </div>
         <div>
