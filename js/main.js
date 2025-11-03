@@ -3,15 +3,17 @@ let assetsGlobal = [];
 function render() {
     const template = document.getElementById("table").innerHTML;
 
-    fetchfromapi(function (assets) {
-        assetsGlobal = assets;
-        const rendered = Mustache.render(template, { assets });
-        document.getElementById("tableBody").innerHTML = rendered;
+    fetchEurRate(() => { // wait for EUR rate
+        fetchfromapi(function (assets) {
+            assetsGlobal = assets;
+            const rendered = Mustache.render(template, { assets });
+            document.getElementById("tableBody").innerHTML = rendered;
 
-        document.querySelectorAll(".details-btn").forEach(btn => {
-            btn.addEventListener("click", function () {
-                const index = Number(this.dataset.index) - 1;
-                showDetails(assetsGlobal[index]);
+            document.querySelectorAll(".details-btn").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const index = Number(this.dataset.index) - 1;
+                    showDetails(assetsGlobal[index]);
+                });
             });
         });
     });
@@ -35,7 +37,7 @@ function showDetails(asset) {
 
     // Fetch 7-day history
     console.log("fetching from " + asset.id);
-    fetch(`https://rest.coincap.io/v3/assets/${asset.id}/history?interval=d1&apiKey=bc2e17edb0b35af378060dae9c35a6aeea540fac4e2b7b463b185fd5339b81eb&limit=10`)
+    fetch(`https://rest.coincap.io/v3/assets/${asset.id}/history?interval=d1&apiKey=bc2e17edb0b35af378060dae9c35a6aeea540fac4e2b7b463b185fd5339b81eb`)
         .then(res => res.json())
         .then(historyData => {
             const prices = historyData.data.slice(-7);
@@ -86,11 +88,14 @@ function fetchfromapi(callback) {
                 ...asset,
 
                 row: i + 1,
-                // format values so they're human-friendly
                 price: Number(asset.priceUsd).toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 }),
+                priceEur: eurRate > 0 ? (Number(asset.priceUsd) * eurRate).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) : 'N/A', // Add Euro price
                 supply: Number(asset.supply).toLocaleString(),
                 marketCap: Number(asset.marketCapUsd).toLocaleString(undefined, {
                     minimumFractionDigits: 0,
@@ -109,7 +114,7 @@ function fetchfromapi(callback) {
 }
 
 $(document).ready(function () {
-    render();   
+    render();
 });
 
 $(document).on('click', '#buyButton', function () {
@@ -213,4 +218,21 @@ $(document).on('input', '#buyAmount', function () {
     })}`);
 });
 
+let eurRate = 0;
 
+function fetchEurRate(callback) {
+    fetch('https://rest.coincap.io/v3/rates/euro?apiKey=bc2e17edb0b35af378060dae9c35a6aeea540fac4e2b7b463b185fd5339b81eb')
+        .then(res => res.json())
+        .then(data => {
+            // rateUsd is how many USD for 1 EUR
+            // We want how many EUR for 1 USD: 1 / rateUsd
+            eurRate = 1 / Number(data.data.rateUsd);
+            console.log("EUR conversion rate:", eurRate);
+            callback && callback();
+        })
+        .catch(err => {
+            console.error("Error fetching EUR rate:", err);
+            eurRate = 0; // fallback
+            callback && callback();
+        });
+}

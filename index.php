@@ -55,7 +55,7 @@ include 'php/functions.php';
                     {{symbol}}
                 </td>
                 <td>{{name}}</td>
-                <td>{{price}}</td>
+                <td>${{price}} / €{{priceEur}}</td>
                 <td><button class="details-btn" data-index="{{row}}">View</button></td>
             </tr>
         {{/assets}}
