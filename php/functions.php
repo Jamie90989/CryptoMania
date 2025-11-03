@@ -14,6 +14,9 @@ function navbar()
              <div>
                 <button><a href="exchanges.php">Exchanges</a></button>
             </div>
+             <div>
+                <button><a href="news.php">News</a></button>
+            </div>
         </div>
         <div>
             <button><a href="login.php">Login</a></button>
